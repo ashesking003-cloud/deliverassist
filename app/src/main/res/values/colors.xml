@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Match the app's blue header color to prevent white flash on launch -->
+    <color name="launch_bg">#2563EB</color>
+    <color name="colorPrimary">#2563EB</color>
+    <color name="colorPrimaryDark">#1d4ed8</color>
+    <color name="colorAccent">#FF9900</color>
+</resources>

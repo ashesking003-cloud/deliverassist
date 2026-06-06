@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="false">
+        <!-- OpenStreetMap tile servers -->
+        <domain includeSubdomains="true">openstreetmap.org</domain>
+        <!-- Nominatim geocoding API -->
+        <domain includeSubdomains="true">nominatim.openstreetmap.org</domain>
+        <!-- Leaflet JS CDN -->
+        <domain includeSubdomains="true">unpkg.com</domain>
+        <!-- Tabler icons CDN -->
+        <domain includeSubdomains="true">cdn.jsdelivr.net</domain>
+    </domain-config>
+</network-security-config>

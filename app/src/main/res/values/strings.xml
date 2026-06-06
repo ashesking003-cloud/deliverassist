@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Delivery Assist</string>
+    <string name="exit_title">Exit</string>
+    <string name="exit_message">Exit Route Planner?</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+</resources>
