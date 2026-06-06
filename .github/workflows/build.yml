@@ -3,7 +3,7 @@ name: Build APK
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:       # lets you trigger manually from the GitHub website
+  workflow_dispatch:
 
 jobs:
   build:
@@ -28,26 +28,17 @@ jobs:
           yes | sdkmanager --licenses || true
           sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
 
-      - name: Bootstrap Gradle wrapper
-        run: |
-          # Download gradle-wrapper.jar directly from Gradle's CDN
-          mkdir -p gradle/wrapper
-          curl -sL "https://services.gradle.org/distributions/gradle-8.6-bin.zip" -o /tmp/gradle.zip
-          unzip -q /tmp/gradle.zip -d /tmp/gradle-dist
-          GRADLE_DIR=$(ls /tmp/gradle-dist)
-          cp /tmp/gradle-dist/$GRADLE_DIR/lib/plugins/gradle-wrapper-*.jar gradle/wrapper/gradle-wrapper.jar || \
-          find /tmp/gradle-dist -name "gradle-wrapper.jar" -exec cp {} gradle/wrapper/gradle-wrapper.jar \;
-          echo "Wrapper jar: $(wc -c < gradle/wrapper/gradle-wrapper.jar) bytes"
-
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
+      - name: Setup Gradle 8.6
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.6'
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug --stacktrace
+        run: gradle assembleDebug --stacktrace
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: RoutePlanner-APK
+          name: DeliveryAssist-APK
           path: app/build/outputs/apk/debug/app-debug.apk
           retention-days: 30
